@@ -8,8 +8,8 @@ module.exports = {
             const savedUser = await newUser.save()
             return res.status(201).send({
                 success: true,
-                _id: newUser._id,
-                username: newUser.username
+                _id: savedUser._id,
+                username: savedUser.username
             })
         } catch (error) {
             console.log(error)
