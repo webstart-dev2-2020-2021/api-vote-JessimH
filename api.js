@@ -1,37 +1,33 @@
+/*CONSTANTES ESSENTIELLES A NODEJS AVEC EXPRESS*/
 const express = require('express')
 const helmet = require('helmet')
 const mongoose = require('mongoose')
+const PORT = 3000
 
+/*Liens avec les routeurs*/
 const authRouter = require('./routes/authRouter').router
 const adminRouter = require('./routes/adminRouter').router
 const voteRouter = require('./routes/voteRouter').router
-const PORT = 3000
 
+/*Initialisation de l'app*/
 const api = express()
 api.use(helmet())
 api.use(express.json())
 
-
+/*MONGODB CONNECTION*/
 mongoose.set('useFindAndModify', false)
 mongoose.connect(
-    'mongodb+srv://JessimAdmin:azertyuiop1@cluster0.ohmmx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    `mongodb+srv://JessimAdmin:azertyuiop1@cluster0.ohmmx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
 )
 const db = mongoose.connection
-db.on('error', console.error.bind(console, 'ERROR: CANNOT CONNECT TO MONGO-DB'))
-db.once('open', () => console.log('CONNECTED TO MONGO-DB'))
+db.on('error', console.error.bind(console, 'ERROR: Connexion a MongoDb impossible'))
+db.once('open', () => console.log('MongoDb à bien été connecté'))
 
-/*  ROUTES:
-    http://localhost:3000/api/auth/signin/
-    http://localhost:3000/api/auth/signup/
-
-    http://localhost:3000/api/admin/users/
-    http://localhost:3000/api/admin/users/:id
-
-    http://localhost:3000/api/vote/
-*/
+/*ROUTES*/
 api.use('/auth/', authRouter)
 api.use('/admin/', adminRouter)
 api.use('/vote/', voteRouter)
 
+/*START serveur */
 api.listen(PORT, () => console.log(`Serveur lancé sur le port ${PORT}, bon développement !`))
