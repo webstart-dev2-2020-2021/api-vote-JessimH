@@ -2,11 +2,11 @@ const express = require('express')
 const adminController = require('../controllers/adminController')
 
 exports.router = (() => {
-    const authRouter = express.Router()
+    const adminRouter = express.Router()
     /*CREATION DES ROUTES */
-    authRouter.route('/users').get(adminController.seeAll)
-    authRouter.route('/users/:id').get(adminController.user)
+    adminRouter.route('/users').get(adminController.seeAll)
+    adminRouter.route('/users/:id').get(adminController.user)
 
 
-    return authRouter
+    return adminRouter
 })()

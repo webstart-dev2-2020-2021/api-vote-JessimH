@@ -1,19 +1,11 @@
 module.exports = {
-    signup(req, res) {
+    seeAll(req, res) {
         return res.status(201).json({
             success: true,
-            user: {
+            vote: {
                 id: 1,
-                username: 'SIGNUP USER'
-            }
-        })
-    },
-    signin(req, res) {
-        return res.status(200).json({
-            success: true,
-            user: {
-                id: 1,
-                username: 'SIGNIN USER'
+                name: "Virer Thomas du post de délégé",
+                nbrVotes: 15
             }
         })
     }
