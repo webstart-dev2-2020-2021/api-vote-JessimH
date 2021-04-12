@@ -10,12 +10,6 @@ const api = express()
 api.use(helmet())
 api.use(express.json())
 
-api.use('/auth/', authRouter)
-api.use('/admin/', adminRouter)
-api.use('/vote/', voteRouter)
-
-api.listen(PORT, () => console.log(`Serveur lancé sur le port ${PORT}, bon développement !`))
-
 /*  ROUTES:
     http://localhost:3000/api/auth/signin/
     http://localhost:3000/api/auth/signup/
@@ -25,3 +19,9 @@ api.listen(PORT, () => console.log(`Serveur lancé sur le port ${PORT}, bon dév
 
     http://localhost:3000/api/vote/
 */
+
+api.use('/auth/', authRouter)
+api.use('/admin/', adminRouter)
+api.use('/vote/', voteRouter)
+
+api.listen(PORT, () => console.log(`Serveur lancé sur le port ${PORT}, bon développement !`))
