@@ -1,5 +1,5 @@
 module.exports = {
-    seeAll(req, res) {
+    vote(req, res) {
         return res.status(201).json({
             success: true,
             vote: {
