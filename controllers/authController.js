@@ -34,7 +34,7 @@ module.exports = {
             return res.status(200).json({
                 success: true,
                 user: {
-                    name: userToSignIn.name,
+                    username: userToSignIn.username,
                     _id: userToSignIn._id
                 }
             })

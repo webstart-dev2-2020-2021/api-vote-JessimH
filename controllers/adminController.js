@@ -2,26 +2,20 @@
     http://localhost:3000/api/admin/users/
     http://localhost:3000/api/admin/users/:id
 */
+const User = require('../models/user');
 
 module.exports = {
-    seeAll(req, res) {
-        return res.status(201).json({
-            success: true,
-            users: [
-                {
-                    id: 1,
-                    username: 'user 1'
-                },
-                {
-                    id: 2,
-                    username: 'User2'
-                },
-                {
-                    id: 3,
-                    username: 'User3'
-                },
-            ]
-        })
+    async seeAll(req, res) {
+        try {
+            const users = await User.find().select('username')
+            return res.status(200).json({
+                success: true,
+                users: [users]
+            })
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send('Erreur du serveur');
+        }
     },
     user(req, res) {
         return res.status(200).json({
