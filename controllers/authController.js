@@ -2,8 +2,7 @@ const User = require('../models/user')
 
 module.exports = {
     async signup(req, res) {
-        const { username, password, email } = req.body
-        if (!username || !password || !email) {
+        if (!req.body.username || !req.body.password || !req.body.email) {
             return res.status(401).json({
                 success: false,
                 errors: "Vous devez remplir toutes les informations."
@@ -30,7 +29,7 @@ module.exports = {
             })
         }
         try {
-            const userToSignIn = await User.findOne({ "email": req.body.email, "password": req.body.password });
+            const userToSignIn = await User.findOne({ "email": req.body.email, "password": req.body.password })
             return res.status(200).json({
                 success: true,
                 user: {
@@ -39,8 +38,8 @@ module.exports = {
                 }
             })
         } catch (error) {
-            console.log(error);
-            return res.status(500).send('Erreur du serveur');
+            console.log(error)
+            return res.status(500).send('Erreur du serveur')
         }
     }
 }

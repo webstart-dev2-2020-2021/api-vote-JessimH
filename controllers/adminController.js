@@ -2,7 +2,7 @@
     http://localhost:3000/api/admin/users/
     http://localhost:3000/api/admin/users/:id
 */
-const User = require('../models/user');
+const User = require('../models/user')
 
 module.exports = {
     async seeAll(req, res) {
@@ -13,21 +13,20 @@ module.exports = {
                 users: [users]
             })
         } catch (error) {
-            console.log(error);
-            return res.status(500).send('Erreur du serveur');
+            console.log(error)
+            return res.status(500).send('Erreur du serveur')
         }
     },
     async user(req, res) {
-        const id = req.params.id;
         try {
-            const user = await User.findById(id).select('username')
+            const user = await User.findById(req.params.id).select('username')
             return res.status(200).json({
                 success: true,
                 user: user
             })
         } catch (error) {
-            console.log(error);
-            return res.status(500).send('Erreur du serveur');
+            console.log(error)
+            return res.status(500).send('Erreur du serveur')
         }
     }
 }
